@@ -14,7 +14,7 @@ try {
   console.log(`Hello ${user}!`);
 
   const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  console.log(`The event payload: ${github.head_ref}`);
 
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
