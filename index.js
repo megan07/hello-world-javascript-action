@@ -1,4 +1,5 @@
 const core = require('@actions/core');
+const fs = require('fs');
 const github = require('@actions/github');
 const random = require('random');
 const yaml = require('js-yaml');
