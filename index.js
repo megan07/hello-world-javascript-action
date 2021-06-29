@@ -10,7 +10,7 @@ try {
   let data = fs.readFileSync('.github/users.yml', 'utf8')
   let users = yaml.safeLoad(data);
 
-  console.log(data)
+  console.log(users)
   
   let max = users["users"][team]["members"].length - 1
   let randomNum = random.int(max=max)
