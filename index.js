@@ -13,7 +13,7 @@ try {
   console.log(users, users["users"][team]["members"].length)
   
   let max = users["users"][team]["members"].length - 1
-  let randomNum = random.int(max=max)
+  let randomNum = random.int(0, max)
 
   console.log(randomNum, max)
 
