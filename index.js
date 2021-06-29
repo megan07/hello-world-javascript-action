@@ -7,7 +7,7 @@ const yaml = require('js-yaml');
 try {
   const team = core.getInput('team');
 
-  let data = fs.readFileSync('../users.yml', 'utf8')
+  let data = fs.readFileSync('.github/users.yml', 'utf8')
   let users = yaml.safeLoad(data);
   
   let max = users["users"][team]["members"].length - 1
