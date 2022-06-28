@@ -1,21 +1,16 @@
 # Hello world javascript action
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action adds a comment to an open PR
 
 ## Inputs
 
-## `who-to-greet`
+## `repo-token`
 
-**Required** The name of the person to greet. Default `"World"`.
-
-## Outputs
-
-## `time`
-
-The time we greeted you.
+**Required** The repo's GITHUB_TOKEN
 
 ## Example usage
-
+```
 uses: actions/hello-world-javascript-action@v1.1
 with:
-  who-to-greet: 'Mona the Octocat'
+  repo-token: ${{ secrets.GITHUB_TOKEN }}
+```
