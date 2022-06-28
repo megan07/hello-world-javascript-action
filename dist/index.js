@@ -1,31 +1,58 @@
 /******/ var __webpack_modules__ = ({
 
+/***/ 865:
+/***/ ((module) => {
+
+module.exports = eval("require")("@actions/core");
+
+
+/***/ }),
+
+/***/ 663:
+/***/ ((module) => {
+
+module.exports = eval("require")("@actions/github");
+
+
+/***/ }),
+
+/***/ 80:
+/***/ ((module) => {
+
+module.exports = eval("require")("@octokit/webhooks");
+
+
+/***/ }),
+
 /***/ 54:
 /***/ ((__webpack_module__, __unused_webpack___webpack_exports__, __nccwpck_require__) => {
 
 __nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependencies__) => {
-const core = require('@actions/core');
-const github = require('@actions/github');
-const webhooks = require('@octokit/webhooks');
+/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(865);
+/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(663);
+/* harmony import */ var _octokit_webhooks__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(80);
+
+
+
 
 try {
     // The pull_request exists on payload when a pull_request event is triggered.
     // Sets action status to failed when pull_request does not exist on payload.
-    const pr = github.context.payload.pull_request
+    const pr = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.pull_request
     if (!pr) {
-      core.setFailed('github.context.payload.pull_request not exist')
+      _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed('github.context.payload.pull_request not exist')
       throw new Error("pull request did not exist in payload")
     }
   console.log(`The event pull request: ${payload.pull_request}`);
   // Get input parameters.
-  const token = core.getInput('repo-token')
+  const token = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('repo-token')
 
   // Create a GitHub client.
-  const client = new github.GitHub(token)
+  const client = new _actions_github__WEBPACK_IMPORTED_MODULE_1__.GitHub(token)
 
   // Get owner and repo from context
-  const owner = github.context.repo.owner
-  const repo = github.context.repo.repo
+  const owner = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.owner
+  const repo = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo
   const message = "my message"
 
   // Create a comment on PR
@@ -33,13 +60,13 @@ try {
   const response = await client.issues.createComment({
     owner,
     repo,
-    issue_number: github.context.payload.pull_request.number,
+    issue_number: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.pull_request.number,
     body: message
   })
-  core.debug(`created comment URL: ${response.data.html_url}`)
-  core.setOutput('comment-url', response.data.html_url)
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.debug(`created comment URL: ${response.data.html_url}`)
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('comment-url', response.data.html_url)
 } catch (error) {
-  core.setFailed(error.message);
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
 }
 __webpack_handle_async_dependencies__();
 }, 1);

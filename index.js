@@ -1,6 +1,6 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
-const webhooks = require('@octokit/webhooks');
+import * as core from '@actions/core'
+import * as github from '@actions/github'
+import * as Webhooks from '@octokit/webhooks'
 
 try {
     // The pull_request exists on payload when a pull_request event is triggered.
