@@ -1,16 +1,17 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+import * as Webhooks from '@octokit/webhooks'
 
 try {
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-
-  if !payload.pull_request {
-    core.setFailed('github.context.payload.pull_request not exist')
-    return
-  }
-
-  console.log(`The event pull request: ${payload.pull_request}`);
+    // The pull_request exists on payload when a pull_request event is triggered.
+    // Sets action status to failed when pull_request does not exist on payload.
+  //   const wh = github.context.payload as Webhooks
+  //   const pr = wh.pull_request as Webhooks.WebhookPayloadPullRequest
+  //   if (!pr) {
+  //     core.setFailed('github.context.payload.pull_request not exist')
+  //     return
+  //   }
+  // console.log(`The event pull request: ${payload.pull_request}`);
   // Get input parameters.
   const token = core.getInput('repo-token')
 
@@ -27,7 +28,7 @@ try {
   const response = await client.issues.createComment({
     owner,
     repo,
-    issue_number: pr.number,
+    issue_number: github.context.payload.pull_request.number,
     body: message
   })
   core.debug(`created comment URL: ${response.data.html_url}`)

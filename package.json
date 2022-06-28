@@ -1,6 +1,6 @@
 {
   "name": "hello-world-javascript-action",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -19,9 +19,6 @@
   "homepage": "https://github.com/megan07/hello-world-javascript-action#readme",
   "dependencies": {
     "@actions/core": "^1.9.0",
-    "@actions/github": "^5.0.3",
-    "fs": "0.0.1-security",
-    "js-yaml": "^3.14.1",
-    "random": "^3.0.6"
+    "@actions/github": "^5.0.3"
   }
 }
