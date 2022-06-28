@@ -6,7 +6,7 @@ This action adds a comment to an open PR
 
 ## `repo-token`
 
-**Required** The repo's GITHUB_TOKEN
+**Required** The repo's GITHUB_TOKEN.
 
 ## Example usage
 ```
