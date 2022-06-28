@@ -1,4 +1,4 @@
-# Hello world javascript action
+# Post a comment javascript action
 
 This action adds a comment to an open PR
 
