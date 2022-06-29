@@ -8,7 +8,7 @@ jobs:
     name: A job to warn the submitting user
     steps:
       - name: Post the warning
-        uses: megan07/pr-warning@16462c999814d1c78e039fd533eaf2bd19e87682
+        uses: megan07/pr-warning@master
         id: pr-warning
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
