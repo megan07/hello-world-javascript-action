@@ -10,7 +10,7 @@ export async function run() {
     }
 
     const warning = core.getInput("warning");
-    const octokit = github.GitHub(token);
+    const client = new github.GitHub(repoToken);
     const pr = {
       owner: github.context.issue.owner,
       repo: github.context.issue.repo,
@@ -28,7 +28,7 @@ export async function run() {
       core.setFailed("Missing warning.");
       return;
     }
-    await octokit.rest.issues.createComment({
+    await client.rest.issues.createComment({
       owner: pr.owner,
       repo: pr.repo,
       issue_number: pr.number,
