@@ -12,7 +12,7 @@ export async function run() {
       number: github.context.issue.number
     };
 
-    prOpenOptions = ['opened', 're-opened', 'ready-for-review']
+    prOpenOptions = ['opened', 'reopened', 'ready-for-review']
     if (!prOpenOptions.includes(github.context.payload.action)) {
       console.log('No pull request was opened, skipping');
       return;
