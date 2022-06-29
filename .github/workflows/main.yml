@@ -3,19 +3,17 @@ on:
     types: [opened, ready_for_review, reopened]
 
 jobs:
-  hello_world_job:
+  pr_comment:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to comment a warning
     steps:
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Hello world action step
+      - name: comment step
         uses: ./ # Uses an action in the root directory
-        id: hello
+        id: pr-comment
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          warning: "this is a pr"
