@@ -17,4 +17,5 @@ This action adds a comment to an open PR
 uses: actions/hello-world-javascript-action@v1.5
 with:
   repo-token: ${{ secrets.GITHUB_TOKEN }}
+  warning: "a warning"
 ```
