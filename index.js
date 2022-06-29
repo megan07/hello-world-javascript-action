@@ -32,7 +32,7 @@ export async function run() {
       owner: pr.owner,
       repo: pr.repo,
       issue_number: pr.number,
-      body: "** WARNING **: ${warning}",
+      body: `** WARNING **: ${warning}`,
     });
 
     core.info(
