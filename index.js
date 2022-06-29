@@ -3,7 +3,7 @@ const github = require("@actions/github");
 
 export async function run() {
   try {
-    const token = core.getInput("token");
+    const token = core.getInput("repo-token");
     if (!token) {
       core.setFailed("Missing token.");
       return;

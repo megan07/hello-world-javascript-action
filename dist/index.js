@@ -9037,7 +9037,7 @@ const github = __nccwpck_require__(7103);
 
 async function run() {
   try {
-    const token = core.getInput("token");
+    const token = core.getInput("repo-token");
     if (!token) {
       core.setFailed("Missing token.");
       return;
