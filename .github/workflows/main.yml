@@ -3,17 +3,13 @@ on:
     types: [opened, ready_for_review, reopened]
 
 jobs:
-  hello_world_job:
+  pr-warning:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to warn the submitting user
     steps:
-      # To use this repository's private action,
-      # you must check out the repository
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Hello world action step
-        uses: ./ # Uses an action in the root directory
-        id: hello
+      - name: Post the warning
+        uses: megan07/pr-warning@16462c999814d1c78e039fd533eaf2bd19e87682
+        id: pr-warning
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          warning: "my-warning"
+          warning: "Ahhhh!"
