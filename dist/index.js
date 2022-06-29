@@ -9037,9 +9037,9 @@ const github = __nccwpck_require__(7103);
 
 async function run() {
   try {
-    const input = core.getInput("token");
+    const token = core.getInput("token");
     const warning = core.getInput("warning");
-    const octokit = github.getOctokit(inputs.token);
+    const octokit = github.getOctokit(token);
     const pr = {
       owner: github.context.issue.owner,
       repo: github.context.issue.repo,
