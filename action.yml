@@ -5,7 +5,7 @@ inputs:
     description: 'repo token'
     required: true
   warning:  # id of input
-    description: 'warning'
+    description: 'a warning'
     required: true
 runs:
   using: 'node16'
