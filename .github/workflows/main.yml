@@ -5,15 +5,15 @@ on:
 jobs:
   pr_comment:
     runs-on: ubuntu-latest
-    name: Issue a warning via GHA
+    name: A job to comment a warning
     steps:
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Comment warning messages
+      - name: comment step
         uses: ./ # Uses an action in the root directory
-        id: pr-warning
+        id: pr-comment
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          warning: "This is a PR"
+          warning: "this is a pr"
