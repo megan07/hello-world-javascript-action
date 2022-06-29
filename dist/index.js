@@ -9038,8 +9038,13 @@ const github = __nccwpck_require__(7103);
 async function run() {
   try {
     const token = core.getInput("token");
+    if (!token) {
+      core.setFailed("Missing token.");
+      return;
+    }
+
     const warning = core.getInput("warning");
-    const octokit = github.getOctokit(token);
+    const octokit = github.GitHub(token);
     const pr = {
       owner: github.context.issue.owner,
       repo: github.context.issue.repo,

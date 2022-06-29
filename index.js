@@ -10,7 +10,7 @@ export async function run() {
     }
 
     const warning = core.getInput("warning");
-    const octokit = github.getOctokit(token);
+    const octokit = github.GitHub(token);
     const pr = {
       owner: github.context.issue.owner,
       repo: github.context.issue.repo,
