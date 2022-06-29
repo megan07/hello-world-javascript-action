@@ -7,13 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to warn the submitting user
     steps:
-      # To use this repository's private action,
-      # you must check out the repository
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Post the warning
-        uses: ./ # Uses an action in the root directory
-        # uses: megan07/pr-warning@d70218b80030afdecb4a9f30fd3dcad58f3c59d3
+        uses: megan07/pr-warning@bff336c7ca420eeb5bd52565075b138182d96ac3
         id: pr-warning
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
