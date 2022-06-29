@@ -1,43 +1,40 @@
-const core = require("@actions/core");
-const github = require("@actions/github");
+import * as core from '@actions/core'
+import * as github from '@actions/github'
+import * as Webhooks from '@octokit/webhooks'
 
 export async function run() {
   try {
-    const input = core.getInput("token");
-    const warning = core.getInput("warning");
-    const octokit = github.getOctokit(inputs.token);
-    const pr = {
-      owner: github.context.issue.owner,
-      repo: github.context.issue.repo,
-      number: github.context.issue.number
-    };
+      // The pull_request exists on payload when a pull_request event is triggered.
+      // Sets action status to failed when pull_request does not exist on payload.
+      const pr = github.context.payload.pull_request
+      if (!pr) {
+        core.setFailed('github.context.payload.pull_request not exist')
+        throw new Error("pull request did not exist in payload")
+      }
+    console.log(`The event pull request: ${payload.pull_request}`);
+    // Get input parameters.
+    const token = core.getInput('repo-token')
 
-    prOpenOptions = ['opened', 'reopened', 'ready-for-review']
-    if (!prOpenOptions.includes(github.context.payload.action)) {
-      console.log('No pull request was opened, skipping');
-      return;
-    }
+    // Create a GitHub client.
+    const client = new github.GitHub(token)
 
-    // Create a comment
-    if (!warning) {
-      core.setFailed("Missing warning.");
-      return;
-    }
-    await octokit.rest.issues.createComment({
-      owner: pr.owner,
-      repo: pr.repo,
-      issue_number: pr.number,
-      body: warning,
-    });
+    // Get owner and repo from context
+    const owner = github.context.repo.owner
+    const repo = github.context.repo.repo
+    const message = "my message"
 
-    core.info(
-      `Created comment '${warning}' on PR '${pr.number}'.`
-    );
+    // Create a comment on PR
+    // https://octokit.github.io/rest.js/#octokit-routes-issues-create-comment
+    const response = await client.issues.createComment({
+      owner,
+      repo,
+      issue_number: github.context.payload.pull_request.number,
+      body: message
+    })
+    core.debug(`created comment URL: ${response.data.html_url}`)
+    core.setOutput('comment-url', response.data.html_url)
   } catch (error) {
     core.setFailed(error.message);
-    if (error.message == 'Resource not accessible by integration') {
-      core.error(`See this action's readme for details about this error`);
-    }
   }
 }
 
