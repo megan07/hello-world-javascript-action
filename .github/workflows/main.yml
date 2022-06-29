@@ -3,16 +3,17 @@ on:
     types: [opened, ready_for_review, reopened]
 
 jobs:
-  hello_world_job:
+  pr_comment:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Issue a warning via GHA
     steps:
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Hello world action step
+      - name: Comment warning messages
         uses: ./ # Uses an action in the root directory
-        id: hello
+        id: pr-warning
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+          warning: "This is a PR"
