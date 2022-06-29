@@ -13,7 +13,7 @@ jobs:
       #   uses: actions/checkout@v3
       - name: Post the warning
         # uses: ./ # Uses an action in the root directory
-        uses: megan07/pr-warning@3e6d12f74bc90d76cd96c284a2eb7e73b12e48cd
+        uses: megan07/pr-warning@v1.0.0
         id: pr-warning
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
