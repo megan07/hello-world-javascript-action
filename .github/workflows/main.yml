@@ -8,13 +8,7 @@ jobs:
     name: A job to warn the submitting user
     steps:
       - name: Post the warning
-      # To use this repository's private action,
-      # you must check out the repository
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Hello world action step
-        uses: ./ # Uses an action in the root directory
-        # uses: megan07/pr-warning@d70218b80030afdecb4a9f30fd3dcad58f3c59d3
+        uses: megan07/pr-warning@d70218b80030afdecb4a9f30fd3dcad58f3c59d3
         id: pr-warning
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
